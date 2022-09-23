@@ -50,7 +50,7 @@ const Home = (props: HomeProps) => {
     message: "",
     severity: undefined,
   });
-
+  console.log(process.env)
   const rpcUrl = props.rpcHost;
   const wallet = useWallet();
 

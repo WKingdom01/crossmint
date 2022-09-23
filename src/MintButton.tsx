@@ -44,7 +44,7 @@ export const MintButton = ({
       return 'PRESALE MINT';
     }
 
-    return 'MINT';
+    return 'Buy';
   };
 
   return (

@@ -1,0 +1,22 @@
+button.crossmintbutton {
+    background-color: rgb(30 155 51);
+}
+button img{
+    display: none;
+}
+button span{
+    width: '100%';
+}
+.button-group{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.wallet_adr{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.wallet_adr h3{
+    margin: 0px;
+    margin-top: 10px;
+}

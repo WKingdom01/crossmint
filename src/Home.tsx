@@ -20,7 +20,7 @@ import { Header } from "./Header";
 import { MintButton } from "./MintButton";
 import { GatewayProvider } from "@civic/solana-gateway-react";
 import { CrossmintPayButton } from "@crossmint/client-sdk-react-ui";
-
+import './Home.css';
 const ConnectButton = styled(WalletDialogButton)`
   width: 100%;
   height: 60px;
@@ -213,13 +213,53 @@ const Home = (props: HomeProps) => {
             </>
           )}
           {process.env.REACT_APP_CROSSMINT_ID && (
-            <CrossmintPayButton
-                style={{ margin: "0 auto", width: "100%" }}
-                clientId={process.env.REACT_APP_CROSSMINT_ID}
-                environment={process.env.REACT_APP_SOLANA_NETWORK === "devnet" && process.env.REACT_APP_SOLANA_RPC_HOST === "https://api.devnet.solana.com" ? "staging" : ""}
-            />
+            
+            <div>
+              <div className='button-group'>
+                {wallet.publicKey ?
+                  <>
+                    <CrossmintPayButton                
+                      clientId={process.env.REACT_APP_CROSSMINT_ID}
+                      paymentMethod="ETH"
+                      environment={process.env.REACT_APP_SOLANA_NETWORK === "devnet" && process.env.REACT_APP_SOLANA_RPC_HOST === "https://api.devnet.solana.com" ? "staging" : ""}
+                      mintTo={wallet.publicKey.toString()}
+                      className='crossmintbutton'
+                    />
+                    <CrossmintPayButton
+                      clientId={process.env.REACT_APP_CROSSMINT_ID}
+                      environment={process.env.REACT_APP_SOLANA_NETWORK === "devnet" && process.env.REACT_APP_SOLANA_RPC_HOST === "https://api.devnet.solana.com" ? "staging" : ""}
+                      mintTo={wallet.publicKey.toString()}
+                      className='crossmintbutton'
+                    />
+                  </>:
+                  <>
+                    <CrossmintPayButton                
+                      clientId={process.env.REACT_APP_CROSSMINT_ID}
+                      paymentMethod="ETH"
+                      environment={process.env.REACT_APP_SOLANA_NETWORK === "devnet" && process.env.REACT_APP_SOLANA_RPC_HOST === "https://api.devnet.solana.com" ? "staging" : ""}
+                      className='crossmintbutton'
+                    />
+                    <CrossmintPayButton
+                      clientId={process.env.REACT_APP_CROSSMINT_ID}
+                      environment={process.env.REACT_APP_SOLANA_NETWORK === "devnet" && process.env.REACT_APP_SOLANA_RPC_HOST === "https://api.devnet.solana.com" ? "staging" : ""}
+                      className='crossmintbutton'
+                    />
+                  </>
+
+                }             
+                
+              </div>
+              
+            </div>
+            
           )}
+          <div className='wallet_adr'>
+            <h3>Wallet Address</h3>
+            {wallet.publicKey&&
+              wallet.publicKey.toString()}
+          </div>
         </Paper>
+        
       </Container>
 
       <Snackbar
